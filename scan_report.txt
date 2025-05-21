@@ -1,0 +1,4464 @@
+=== GitHub Secrets Detection Report ===
+
+
+File: ./secret_detector.py
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: /usr/bin
+  Context:
+> 1: #!/usr/bin/env python3
+  2: 
+  3: import os
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: argparse
+  Context:
+  4: import re
+  5: import json
+> 6: import argparse
+  7: from pathlib import Path
+  8: from typing import List, Dict, Set
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: Configur
+  Context:
+  9: import logging
+  10: 
+> 11: # Configure logging
+  12: logging.basicConfig(
+  13:     level=logging.INFO,
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: basicCon
+  Context:
+  10: 
+  11: # Configure logging
+> 12: logging.basicConfig(
+  13:     level=logging.INFO,
+  14:     format='%(asctime)s - %(levelname)s - %(message)s'
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 14
+  Match: levelnam
+  Context:
+  12: logging.basicConfig(
+  13:     level=logging.INFO,
+> 14:     format='%(asctime)s - %(levelname)s - %(message)s'
+  15: )
+  16: logger = logging.getLogger(__name__)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 16
+  Match: getLogge
+  Context:
+  14:     format='%(asctime)s - %(levelname)s - %(message)s'
+  15: )
+> 16: logger = logging.getLogger(__name__)
+  17: 
+  18: class SecretDetector:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 18
+  Match: SecretDe
+  Context:
+  16: logger = logging.getLogger(__name__)
+  17: 
+> 18: class SecretDetector:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+  20:         """Initialize the secret detector with regex patterns."""
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: patterns
+  Context:
+  17: 
+  18: class SecretDetector:
+> 19:     def __init__(self, config_path: str = "patterns.json"):
+  20:         """Initialize the secret detector with regex patterns."""
+  21:         self.patterns = self._load_patterns(config_path)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 20
+  Match: Initiali
+  Context:
+  18: class SecretDetector:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+> 20:         """Initialize the secret detector with regex patterns."""
+  21:         self.patterns = self._load_patterns(config_path)
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 20
+  Match: detector
+  Context:
+  18: class SecretDetector:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+> 20:         """Initialize the secret detector with regex patterns."""
+  21:         self.patterns = self._load_patterns(config_path)
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 20
+  Match: patterns
+  Context:
+  18: class SecretDetector:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+> 20:         """Initialize the secret detector with regex patterns."""
+  21:         self.patterns = self._load_patterns(config_path)
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 21
+  Match: patterns
+  Context:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+  20:         """Initialize the secret detector with regex patterns."""
+> 21:         self.patterns = self._load_patterns(config_path)
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+  23:         
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 21
+  Match: patterns
+  Context:
+  19:     def __init__(self, config_path: str = "patterns.json"):
+  20:         """Initialize the secret detector with regex patterns."""
+> 21:         self.patterns = self._load_patterns(config_path)
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+  23:         
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: patterns
+  Context:
+  22:         self.found_secrets: Dict[str, List[Dict]] = {}
+  23:         
+> 24:     def _load_patterns(self, config_path: str) -> Dict[str, str]:
+  25:         """Load regex patterns from configuration file."""
+  26:         try:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: patterns
+  Context:
+  23:         
+  24:     def _load_patterns(self, config_path: str) -> Dict[str, str]:
+> 25:         """Load regex patterns from configuration file."""
+  26:         try:
+  27:             with open(config_path, 'r') as f:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: configur
+  Context:
+  23:         
+  24:     def _load_patterns(self, config_path: str) -> Dict[str, str]:
+> 25:         """Load regex patterns from configuration file."""
+  26:         try:
+  27:             with open(config_path, 'r') as f:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: FileNotF
+  Context:
+  27:             with open(config_path, 'r') as f:
+  28:                 return json.load(f)
+> 29:         except FileNotFoundError:
+  30:             logger.error(f"Pattern configuration file not found: {config_path}")
+  31:             return {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: oundErro
+  Context:
+  27:             with open(config_path, 'r') as f:
+  28:                 return json.load(f)
+> 29:         except FileNotFoundError:
+  30:             logger.error(f"Pattern configuration file not found: {config_path}")
+  31:             return {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 30
+  Match: configur
+  Context:
+  28:                 return json.load(f)
+  29:         except FileNotFoundError:
+> 30:             logger.error(f"Pattern configuration file not found: {config_path}")
+  31:             return {}
+  32:         except json.JSONDecodeError:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 32
+  Match: JSONDeco
+  Context:
+  30:             logger.error(f"Pattern configuration file not found: {config_path}")
+  31:             return {}
+> 32:         except json.JSONDecodeError:
+  33:             logger.error(f"Invalid JSON in pattern configuration file: {config_path}")
+  34:             return {}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 33
+  Match: configur
+  Context:
+  31:             return {}
+  32:         except json.JSONDecodeError:
+> 33:             logger.error(f"Invalid JSON in pattern configuration file: {config_path}")
+  34:             return {}
+  35: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 41
+  Match: encoding
+  Context:
+  39:         
+  40:         try:
+> 41:             with open(file_path, 'r', encoding='utf-8') as f:
+  42:                 content = f.read()
+  43:                 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 44
+  Match: patterns
+  Context:
+  42:                 content = f.read()
+  43:                 
+> 44:             for pattern_name, pattern in self.patterns.items():
+  45:                 matches = re.finditer(pattern, content)
+  46:                 for match in matches:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 45
+  Match: finditer
+  Context:
+  43:                 
+  44:             for pattern_name, pattern in self.patterns.items():
+> 45:                 matches = re.finditer(pattern, content)
+  46:                 for match in matches:
+  47:                     secret = {
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 55
+  Match: Exceptio
+  Context:
+  53:                     secrets_found.append(secret)
+  54:                     
+> 55:         except Exception as e:
+  56:             logger.error(f"Error scanning file {file_path}: {str(e)}")
+  57:             
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 56
+  Match: scanning
+  Context:
+  54:                     
+  55:         except Exception as e:
+> 56:             logger.error(f"Error scanning file {file_path}: {str(e)}")
+  57:             
+  58:         return secrets_found
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 61
+  Match: surround
+  Context:
+  59: 
+  60:     def _get_context(self, content: str, start: int, end: int, context_lines: int = 2) -> str:
+> 61:         """Get surrounding context for a matched secret."""
+  62:         lines = content.split('\n')
+  63:         line_number = content[:start].count('\n')
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 75
+  Match: director
+  Context:
+  73:         return '\n'.join(context)
+  74: 
+> 75:     def scan_directory(self, directory: str, exclude_dirs: Set[str] = None) -> Dict[str, List[Dict]]:
+  76:         """Scan a directory recursively for secrets."""
+  77:         if exclude_dirs is None:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 75
+  Match: director
+  Context:
+  73:         return '\n'.join(context)
+  74: 
+> 75:     def scan_directory(self, directory: str, exclude_dirs: Set[str] = None) -> Dict[str, List[Dict]]:
+  76:         """Scan a directory recursively for secrets."""
+  77:         if exclude_dirs is None:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 76
+  Match: director
+  Context:
+  74: 
+  75:     def scan_directory(self, directory: str, exclude_dirs: Set[str] = None) -> Dict[str, List[Dict]]:
+> 76:         """Scan a directory recursively for secrets."""
+  77:         if exclude_dirs is None:
+  78:             exclude_dirs = {'.git', '__pycache__', 'node_modules', 'venv'}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 76
+  Match: recursiv
+  Context:
+  74: 
+  75:     def scan_directory(self, directory: str, exclude_dirs: Set[str] = None) -> Dict[str, List[Dict]]:
+> 76:         """Scan a directory recursively for secrets."""
+  77:         if exclude_dirs is None:
+  78:             exclude_dirs = {'.git', '__pycache__', 'node_modules', 'venv'}
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 80
+  Match: director
+  Context:
+  78:             exclude_dirs = {'.git', '__pycache__', 'node_modules', 'venv'}
+  79:             
+> 80:         for root, dirs, files in os.walk(directory):
+  81:             # Skip excluded directories
+  82:             dirs[:] = [d for d in dirs if d not in exclude_dirs]
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 81
+  Match: excluded
+  Context:
+  79:             
+  80:         for root, dirs, files in os.walk(directory):
+> 81:             # Skip excluded directories
+  82:             dirs[:] = [d for d in dirs if d not in exclude_dirs]
+  83:             
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 81
+  Match: director
+  Context:
+  79:             
+  80:         for root, dirs, files in os.walk(directory):
+> 81:             # Skip excluded directories
+  82:             dirs[:] = [d for d in dirs if d not in exclude_dirs]
+  83:             
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 92
+  Match: generate
+  Context:
+  90:         return self.found_secrets
+  91: 
+> 92:     def generate_report(self, output_file: str = None) -> str:
+  93:         """Generate a report of found secrets."""
+  94:         if not self.found_secrets:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 93
+  Match: Generate
+  Context:
+  91: 
+  92:     def generate_report(self, output_file: str = None) -> str:
+> 93:         """Generate a report of found secrets."""
+  94:         if not self.found_secrets:
+  95:             return "No secrets found."
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 98
+  Match: Detectio
+  Context:
+  96:             
+  97:         report = []
+> 98:         report.append("=== GitHub Secrets Detection Report ===\n")
+  99:         
+  100:         for file_path, secrets in self.found_secrets.items():
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 119
+  Match: argparse
+  Context:
+  117: 
+  118: def main():
+> 119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 119
+  Match: Argument
+  Context:
+  117: 
+  118: def main():
+> 119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 119
+  Match: descript
+  Context:
+  117: 
+  118: def main():
+> 119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 119
+  Match: Detector
+  Context:
+  117: 
+  118: def main():
+> 119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 120
+  Match: argument
+  Context:
+  118: def main():
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+> 120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 120
+  Match: director
+  Context:
+  118: def main():
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+> 120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 120
+  Match: Director
+  Context:
+  118: def main():
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+> 120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 121
+  Match: argument
+  Context:
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+> 121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+  123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 121
+  Match: default=
+  Context:
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+> 121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+  123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 121
+  Match: patterns
+  Context:
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+> 121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+  123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 121
+  Match: configur
+  Context:
+  119:     parser = argparse.ArgumentParser(description="GitHub Secrets Detector")
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+> 121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+  123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 122
+  Match: argument
+  Context:
+  120:     parser.add_argument("directory", help="Directory to scan for secrets")
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+> 122:     parser.add_argument("--output", help="Path to output report file")
+  123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+  124:     
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 123
+  Match: argument
+  Context:
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+> 123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+  124:     
+  125:     args = parser.parse_args()
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 123
+  Match: Addition
+  Context:
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+> 123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+  124:     
+  125:     args = parser.parse_args()
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 123
+  Match: director
+  Context:
+  121:     parser.add_argument("--config", default="patterns.json", help="Path to pattern configuration file")
+  122:     parser.add_argument("--output", help="Path to output report file")
+> 123:     parser.add_argument("--exclude", nargs="+", help="Additional directories to exclude")
+  124:     
+  125:     args = parser.parse_args()
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 131
+  Match: detector
+  Context:
+  129:         exclude_dirs.update(args.exclude)
+  130:     
+> 131:     detector = SecretDetector(args.config)
+  132:     detector.scan_directory(args.directory, exclude_dirs)
+  133:     report = detector.generate_report(args.output)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 131
+  Match: SecretDe
+  Context:
+  129:         exclude_dirs.update(args.exclude)
+  130:     
+> 131:     detector = SecretDetector(args.config)
+  132:     detector.scan_directory(args.directory, exclude_dirs)
+  133:     report = detector.generate_report(args.output)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 132
+  Match: detector
+  Context:
+  130:     
+  131:     detector = SecretDetector(args.config)
+> 132:     detector.scan_directory(args.directory, exclude_dirs)
+  133:     report = detector.generate_report(args.output)
+  134:     
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 132
+  Match: director
+  Context:
+  130:     
+  131:     detector = SecretDetector(args.config)
+> 132:     detector.scan_directory(args.directory, exclude_dirs)
+  133:     report = detector.generate_report(args.output)
+  134:     
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 132
+  Match: director
+  Context:
+  130:     
+  131:     detector = SecretDetector(args.config)
+> 132:     detector.scan_directory(args.directory, exclude_dirs)
+  133:     report = detector.generate_report(args.output)
+  134:     
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 133
+  Match: detector
+  Context:
+  131:     detector = SecretDetector(args.config)
+  132:     detector.scan_directory(args.directory, exclude_dirs)
+> 133:     report = detector.generate_report(args.output)
+  134:     
+  135:     if args.output:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 133
+  Match: generate
+  Context:
+  131:     detector = SecretDetector(args.config)
+  132:     detector.scan_directory(args.directory, exclude_dirs)
+> 133:     report = detector.generate_report(args.output)
+  134:     
+  135:     if args.output:
+--------------------------------------------------
+
+File: ./requirements.txt
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: extensio
+  Context:
+> 1: typing-extensions>=4.0.0
+  2: pathlib>=1.0.1 
+--------------------------------------------------
+
+File: ./USAGE_GUIDE.md
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: Detector
+  Context:
+> 1: # GitHub Secrets Detector - Comprehensive Usage Guide
+  2: 
+  3: ## Table of Contents
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: Comprehe
+  Context:
+> 1: # GitHub Secrets Detector - Comprehensive Usage Guide
+  2: 
+  3: ## Table of Contents
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: Contents
+  Context:
+  1: # GitHub Secrets Detector - Comprehensive Usage Guide
+  2: 
+> 3: ## Table of Contents
+  4: 1. [Setup](#setup)
+  5: 2. [Basic Usage](#basic-usage)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: Advanced
+  Context:
+  4: 1. [Setup](#setup)
+  5: 2. [Basic Usage](#basic-usage)
+> 6: 3. [Advanced Usage](#advanced-usage)
+  7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: advanced
+  Context:
+  4: 1. [Setup](#setup)
+  5: 2. [Basic Usage](#basic-usage)
+> 6: 3. [Advanced Usage](#advanced-usage)
+  7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: Integrat
+  Context:
+  5: 2. [Basic Usage](#basic-usage)
+  6: 3. [Advanced Usage](#advanced-usage)
+> 7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: integrat
+  Context:
+  5: 2. [Basic Usage](#basic-usage)
+  6: 3. [Advanced Usage](#advanced-usage)
+> 7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: Patterns
+  Context:
+  6: 3. [Advanced Usage](#advanced-usage)
+  7: 4. [CI/CD Integration](#cicd-integration)
+> 8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+  10: 7. [Troubleshooting](#troubleshooting)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: patterns
+  Context:
+  6: 3. [Advanced Usage](#advanced-usage)
+  7: 4. [CI/CD Integration](#cicd-integration)
+> 8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+  10: 7. [Troubleshooting](#troubleshooting)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: Understa
+  Context:
+  7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+> 9: 6. [Understanding Results](#understanding-results)
+  10: 7. [Troubleshooting](#troubleshooting)
+  11: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: understa
+  Context:
+  7: 4. [CI/CD Integration](#cicd-integration)
+  8: 5. [Custom Patterns](#custom-patterns)
+> 9: 6. [Understanding Results](#understanding-results)
+  10: 7. [Troubleshooting](#troubleshooting)
+  11: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 10
+  Match: Troubles
+  Context:
+  8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+> 10: 7. [Troubleshooting](#troubleshooting)
+  11: 
+  12: ## Setup
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 10
+  Match: troubles
+  Context:
+  8: 5. [Custom Patterns](#custom-patterns)
+  9: 6. [Understanding Results](#understanding-results)
+> 10: 7. [Troubleshooting](#troubleshooting)
+  11: 
+  12: ## Setup
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 14
+  Match: Prerequi
+  Context:
+  12: ## Setup
+  13: 
+> 14: ### Prerequisites
+  15: - Python 3.9 or higher
+  16: - pip (Python package manager)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: Installa
+  Context:
+  17: - Git (for version control)
+  18: 
+> 19: ### Installation
+  20: 
+  21: 1. Clone the repository:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 21
+  Match: reposito
+  Context:
+  19: ### Installation
+  20: 
+> 21: 1. Clone the repository:
+  22: ```bash
+  23: git clone https://github.com/yourusername/github-secrets-detector.git
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 23
+  Match: //github
+  Context:
+  21: 1. Clone the repository:
+  22: ```bash
+> 23: git clone https://github.com/yourusername/github-secrets-detector.git
+  24: cd github-secrets-detector
+  25: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 23
+  Match: com/your
+  Context:
+  21: 1. Clone the repository:
+  22: ```bash
+> 23: git clone https://github.com/yourusername/github-secrets-detector.git
+  24: cd github-secrets-detector
+  25: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 23
+  Match: username
+  Context:
+  21: 1. Clone the repository:
+  22: ```bash
+> 23: git clone https://github.com/yourusername/github-secrets-detector.git
+  24: cd github-secrets-detector
+  25: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 23
+  Match: detector
+  Context:
+  21: 1. Clone the repository:
+  22: ```bash
+> 23: git clone https://github.com/yourusername/github-secrets-detector.git
+  24: cd github-secrets-detector
+  25: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: detector
+  Context:
+  22: ```bash
+  23: git clone https://github.com/yourusername/github-secrets-detector.git
+> 24: cd github-secrets-detector
+  25: ```
+  26: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 27
+  Match: activate
+  Context:
+  25: ```
+  26: 
+> 27: 2. Create and activate a virtual environment:
+  28: ```bash
+  29: # Create virtual environment
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 27
+  Match: environm
+  Context:
+  25: ```
+  26: 
+> 27: 2. Create and activate a virtual environment:
+  28: ```bash
+  29: # Create virtual environment
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: environm
+  Context:
+  27: 2. Create and activate a virtual environment:
+  28: ```bash
+> 29: # Create virtual environment
+  30: python -m venv venv
+  31: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 32
+  Match: Activate
+  Context:
+  30: python -m venv venv
+  31: 
+> 32: # Activate on macOS/Linux
+  33: source venv/bin/activate
+  34: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 32
+  Match: macOS/Li
+  Context:
+  30: python -m venv venv
+  31: 
+> 32: # Activate on macOS/Linux
+  33: source venv/bin/activate
+  34: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 33
+  Match: venv/bin
+  Context:
+  31: 
+  32: # Activate on macOS/Linux
+> 33: source venv/bin/activate
+  34: 
+  35: # Activate on Windows
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 33
+  Match: /activat
+  Context:
+  31: 
+  32: # Activate on macOS/Linux
+> 33: source venv/bin/activate
+  34: 
+  35: # Activate on Windows
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 35
+  Match: Activate
+  Context:
+  33: source venv/bin/activate
+  34: 
+> 35: # Activate on Windows
+  36: # venv\Scripts\activate
+  37: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 36
+  Match: activate
+  Context:
+  34: 
+  35: # Activate on Windows
+> 36: # venv\Scripts\activate
+  37: ```
+  38: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 39
+  Match: dependen
+  Context:
+  37: ```
+  38: 
+> 39: 3. Install dependencies:
+  40: ```bash
+  41: pip install -r requirements.txt
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 41
+  Match: requirem
+  Context:
+  39: 3. Install dependencies:
+  40: ```bash
+> 41: pip install -r requirements.txt
+  42: ```
+  43: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 44
+  Match: executab
+  Context:
+  42: ```
+  43: 
+> 44: 4. Make the script executable:
+  45: ```bash
+  46: chmod +x secret_detector.py
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 46
+  Match: detector
+  Context:
+  44: 4. Make the script executable:
+  45: ```bash
+> 46: chmod +x secret_detector.py
+  47: ```
+  48: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 51
+  Match: Director
+  Context:
+  49: ## Basic Usage
+  50: 
+> 51: ### Scan a Directory
+  52: ```bash
+  53: python secret_detector.py /path/to/scan
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 53
+  Match: detector
+  Context:
+  51: ### Scan a Directory
+  52: ```bash
+> 53: python secret_detector.py /path/to/scan
+  54: ```
+  55: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 53
+  Match: /path/to
+  Context:
+  51: ### Scan a Directory
+  52: ```bash
+> 53: python secret_detector.py /path/to/scan
+  54: ```
+  55: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 56
+  Match: Generate
+  Context:
+  54: ```
+  55: 
+> 56: ### Generate Report File
+  57: ```bash
+  58: python secret_detector.py /path/to/scan --output report.txt
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 58
+  Match: detector
+  Context:
+  56: ### Generate Report File
+  57: ```bash
+> 58: python secret_detector.py /path/to/scan --output report.txt
+  59: ```
+  60: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 58
+  Match: /path/to
+  Context:
+  56: ### Generate Report File
+  57: ```bash
+> 58: python secret_detector.py /path/to/scan --output report.txt
+  59: ```
+  60: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 61
+  Match: Director
+  Context:
+  59: ```
+  60: 
+> 61: ### Exclude Directories
+  62: ```bash
+  63: python secret_detector.py /path/to/scan --exclude dist build node_modules
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: detector
+  Context:
+  61: ### Exclude Directories
+  62: ```bash
+> 63: python secret_detector.py /path/to/scan --exclude dist build node_modules
+  64: ```
+  65: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: /path/to
+  Context:
+  61: ### Exclude Directories
+  62: ```bash
+> 63: python secret_detector.py /path/to/scan --exclude dist build node_modules
+  64: ```
+  65: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 66
+  Match: Advanced
+  Context:
+  64: ```
+  65: 
+> 66: ## Advanced Usage
+  67: 
+  68: ### Custom Configuration
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 68
+  Match: Configur
+  Context:
+  66: ## Advanced Usage
+  67: 
+> 68: ### Custom Configuration
+  69: 1. Create a custom patterns file (e.g., `custom_patterns.json`)
+  70: 2. Run with custom configuration:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 69
+  Match: patterns
+  Context:
+  67: 
+  68: ### Custom Configuration
+> 69: 1. Create a custom patterns file (e.g., `custom_patterns.json`)
+  70: 2. Run with custom configuration:
+  71: ```bash
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 69
+  Match: patterns
+  Context:
+  67: 
+  68: ### Custom Configuration
+> 69: 1. Create a custom patterns file (e.g., `custom_patterns.json`)
+  70: 2. Run with custom configuration:
+  71: ```bash
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 70
+  Match: configur
+  Context:
+  68: ### Custom Configuration
+  69: 1. Create a custom patterns file (e.g., `custom_patterns.json`)
+> 70: 2. Run with custom configuration:
+  71: ```bash
+  72: python secret_detector.py /path/to/scan --config custom_patterns.json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 72
+  Match: detector
+  Context:
+  70: 2. Run with custom configuration:
+  71: ```bash
+> 72: python secret_detector.py /path/to/scan --config custom_patterns.json
+  73: ```
+  74: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 72
+  Match: /path/to
+  Context:
+  70: 2. Run with custom configuration:
+  71: ```bash
+> 72: python secret_detector.py /path/to/scan --config custom_patterns.json
+  73: ```
+  74: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 72
+  Match: patterns
+  Context:
+  70: 2. Run with custom configuration:
+  71: ```bash
+> 72: python secret_detector.py /path/to/scan --config custom_patterns.json
+  73: ```
+  74: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 75
+  Match: Scanning
+  Context:
+  73: ```
+  74: 
+> 75: ### Scanning Specific File Types
+  76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 75
+  Match: Specific
+  Context:
+  73: ```
+  74: 
+> 75: ### Scanning Specific File Types
+  76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 76
+  Match: automati
+  Context:
+  74: 
+  75: ### Scanning Specific File Types
+> 76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+  78: python secret_detector.py /path/to/scan --include "*.py" "*.js" "*.env"
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 76
+  Match: specific
+  Context:
+  74: 
+  75: ### Scanning Specific File Types
+> 76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+  78: python secret_detector.py /path/to/scan --include "*.py" "*.js" "*.env"
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 78
+  Match: detector
+  Context:
+  76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+> 78: python secret_detector.py /path/to/scan --include "*.py" "*.js" "*.env"
+  79: ```
+  80: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 78
+  Match: /path/to
+  Context:
+  76: The tool automatically scans all files. To scan specific file types, use the `--include` option:
+  77: ```bash
+> 78: python secret_detector.py /path/to/scan --include "*.py" "*.js" "*.env"
+  79: ```
+  80: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 82
+  Match: detailed
+  Context:
+  80: 
+  81: ### Verbose Output
+> 82: For detailed logging:
+  83: ```bash
+  84: python secret_detector.py /path/to/scan --verbose
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 84
+  Match: detector
+  Context:
+  82: For detailed logging:
+  83: ```bash
+> 84: python secret_detector.py /path/to/scan --verbose
+  85: ```
+  86: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 84
+  Match: /path/to
+  Context:
+  82: For detailed logging:
+  83: ```bash
+> 84: python secret_detector.py /path/to/scan --verbose
+  85: ```
+  86: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 87
+  Match: Integrat
+  Context:
+  85: ```
+  86: 
+> 87: ## CI/CD Integration
+  88: 
+  89: ### GitHub Actions
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 90
+  Match: github/w
+  Context:
+  88: 
+  89: ### GitHub Actions
+> 90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+  91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 90
+  Match: orkflows
+  Context:
+  88: 
+  89: ### GitHub Actions
+> 90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+  91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 90
+  Match: reposito
+  Context:
+  88: 
+  89: ### GitHub Actions
+> 90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+  91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 91
+  Match: workflow
+  Context:
+  89: ### GitHub Actions
+  90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+> 91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+  93:    - Pull requests
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 91
+  Match: automati
+  Context:
+  89: ### GitHub Actions
+  90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+> 91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+  93:    - Pull requests
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 92
+  Match: main/mas
+  Context:
+  90: 1. Copy `.github/workflows/secret-scan.yml` to your repository
+  91: 2. The workflow will run automatically on:
+> 92:    - Push to main/master
+  93:    - Pull requests
+  94:    - Daily at midnight
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 93
+  Match: requests
+  Context:
+  91: 2. The workflow will run automatically on:
+  92:    - Push to main/master
+> 93:    - Pull requests
+  94:    - Daily at midnight
+  95: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 94
+  Match: midnight
+  Context:
+  92:    - Push to main/master
+  93:    - Pull requests
+> 94:    - Daily at midnight
+  95: 
+  96: ### Custom CI/CD Pipeline
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 96
+  Match: Pipeline
+  Context:
+  94:    - Daily at midnight
+  95: 
+> 96: ### Custom CI/CD Pipeline
+  97: Add these steps to your pipeline:
+  98: ```yaml
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 97
+  Match: pipeline
+  Context:
+  95: 
+  96: ### Custom CI/CD Pipeline
+> 97: Add these steps to your pipeline:
+  98: ```yaml
+  99: - name: Install Python
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 100
+  Match: actions/
+  Context:
+  98: ```yaml
+  99: - name: Install Python
+> 100:   uses: actions/setup-python@v4
+  101:   with:
+  102:     python-version: '3.9'
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 104
+  Match: dependen
+  Context:
+  102:     python-version: '3.9'
+  103: 
+> 104: - name: Install dependencies
+  105:   run: |
+  106:     python -m pip install --upgrade pip
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 107
+  Match: requirem
+  Context:
+  105:   run: |
+  106:     python -m pip install --upgrade pip
+> 107:     pip install -r requirements.txt
+  108: 
+  109: - name: Run secret scanner
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 111
+  Match: detector
+  Context:
+  109: - name: Run secret scanner
+  110:   run: |
+> 111:     python secret_detector.py . --output scan_report.txt
+  112: ```
+  113: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 114
+  Match: Patterns
+  Context:
+  112: ```
+  113: 
+> 114: ## Custom Patterns
+  115: 
+  116: ### Pattern Format
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 117
+  Match: Patterns
+  Context:
+  115: 
+  116: ### Pattern Format
+> 117: Patterns are defined in JSON format:
+  118: ```json
+  119: {
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 125
+  Match: Patterns
+  Context:
+  123: ```
+  124: 
+> 125: ### Adding New Patterns
+  126: 1. Edit `patterns.json` or create a new file
+  127: 2. Add your pattern with a descriptive name
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 126
+  Match: patterns
+  Context:
+  124: 
+  125: ### Adding New Patterns
+> 126: 1. Edit `patterns.json` or create a new file
+  127: 2. Add your pattern with a descriptive name
+  128: 3. Use the `--config` option to use your patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 127
+  Match: descript
+  Context:
+  125: ### Adding New Patterns
+  126: 1. Edit `patterns.json` or create a new file
+> 127: 2. Add your pattern with a descriptive name
+  128: 3. Use the `--config` option to use your patterns
+  129: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 128
+  Match: patterns
+  Context:
+  126: 1. Edit `patterns.json` or create a new file
+  127: 2. Add your pattern with a descriptive name
+> 128: 3. Use the `--config` option to use your patterns
+  129: 
+  130: ### Pattern Examples
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 130
+  Match: Examples
+  Context:
+  128: 3. Use the `--config` option to use your patterns
+  129: 
+> 130: ### Pattern Examples
+  131: ```json
+  132: {
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 134
+  Match: PASSWORD
+  Context:
+  132: {
+  133:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+> 134:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  135: }
+  136: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 134
+  Match: password
+  Context:
+  132: {
+  133:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+> 134:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  135: }
+  136: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 138
+  Match: Understa
+  Context:
+  136: ```
+  137: 
+> 138: ## Understanding Results
+  139: 
+  140: ### Report Format
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 142
+  Match: Detectio
+  Context:
+  140: ### Report Format
+  141: ```
+> 142: === GitHub Secrets Detection Report ===
+  143: 
+  144: File: /path/to/file
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 144
+  Match: /path/to
+  Context:
+  142: === GitHub Secrets Detection Report ===
+  143: 
+> 144: File: /path/to/file
+  145:   Pattern: PATTERN_NAME
+  146:   Line: 42
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 155
+  Match: Interpre
+  Context:
+  153: ```
+  154: 
+> 155: ### Interpreting Results
+  156: - **Pattern**: Type of secret found
+  157: - **Line**: Line number in the file
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 159
+  Match: Surround
+  Context:
+  157: - **Line**: Line number in the file
+  158: - **Match**: The actual secret found
+> 159: - **Context**: Surrounding code for context
+  160: 
+  161: ## Troubleshooting
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 161
+  Match: Troubles
+  Context:
+  159: - **Context**: Surrounding code for context
+  160: 
+> 161: ## Troubleshooting
+  162: 
+  163: ### Common Issues
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 165
+  Match: patterns
+  Context:
+  163: ### Common Issues
+  164: 
+> 165: 1. **No patterns found**
+  166:    - Check if `patterns.json` exists
+  167:    - Verify JSON format is correct
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 166
+  Match: patterns
+  Context:
+  164: 
+  165: 1. **No patterns found**
+> 166:    - Check if `patterns.json` exists
+  167:    - Verify JSON format is correct
+  168:    - Check file permissions
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 168
+  Match: permissi
+  Context:
+  166:    - Check if `patterns.json` exists
+  167:    - Verify JSON format is correct
+> 168:    - Check file permissions
+  169: 
+  170: 2. **Scan too slow**
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 171
+  Match: director
+  Context:
+  169: 
+  170: 2. **Scan too slow**
+> 171:    - Use `--exclude` to skip directories
+  172:    - Use `--include` to scan specific files
+  173:    - Check for large binary files
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 172
+  Match: specific
+  Context:
+  170: 2. **Scan too slow**
+  171:    - Use `--exclude` to skip directories
+> 172:    - Use `--include` to scan specific files
+  173:    - Check for large binary files
+  174: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 175
+  Match: positive
+  Context:
+  173:    - Check for large binary files
+  174: 
+> 175: 3. **False positives**
+  176:    - Adjust pattern regex
+  177:    - Add more context to patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 177
+  Match: patterns
+  Context:
+  175: 3. **False positives**
+  176:    - Adjust pattern regex
+> 177:    - Add more context to patterns
+  178:    - Use `--exclude` for test files
+  179: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 181
+  Match: detailed
+  Context:
+  179: 
+  180: ### Debug Mode
+> 181: For detailed debugging:
+  182: ```bash
+  183: python secret_detector.py /path/to/scan --debug
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 181
+  Match: debuggin
+  Context:
+  179: 
+  180: ### Debug Mode
+> 181: For detailed debugging:
+  182: ```bash
+  183: python secret_detector.py /path/to/scan --debug
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 183
+  Match: detector
+  Context:
+  181: For detailed debugging:
+  182: ```bash
+> 183: python secret_detector.py /path/to/scan --debug
+  184: ```
+  185: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 183
+  Match: /path/to
+  Context:
+  181: For detailed debugging:
+  182: ```bash
+> 183: python secret_detector.py /path/to/scan --debug
+  184: ```
+  185: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 186
+  Match: Practice
+  Context:
+  184: ```
+  185: 
+> 186: ## Best Practices
+  187: 
+  188: 1. **Regular Scanning**
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 188
+  Match: Scanning
+  Context:
+  186: ## Best Practices
+  187: 
+> 188: 1. **Regular Scanning**
+  189:    - Run scans before commits
+  190:    - Use CI/CD integration
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 190
+  Match: integrat
+  Context:
+  188: 1. **Regular Scanning**
+  189:    - Run scans before commits
+> 190:    - Use CI/CD integration
+  191:    - Schedule regular scans
+  192: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 191
+  Match: Schedule
+  Context:
+  189:    - Run scans before commits
+  190:    - Use CI/CD integration
+> 191:    - Schedule regular scans
+  192: 
+  193: 2. **Pattern Management**
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 193
+  Match: Manageme
+  Context:
+  191:    - Schedule regular scans
+  192: 
+> 193: 2. **Pattern Management**
+  194:    - Keep patterns updated
+  195:    - Add organization-specific patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 194
+  Match: patterns
+  Context:
+  192: 
+  193: 2. **Pattern Management**
+> 194:    - Keep patterns updated
+  195:    - Add organization-specific patterns
+  196:    - Review and update regularly
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 195
+  Match: organiza
+  Context:
+  193: 2. **Pattern Management**
+  194:    - Keep patterns updated
+> 195:    - Add organization-specific patterns
+  196:    - Review and update regularly
+  197: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 195
+  Match: specific
+  Context:
+  193: 2. **Pattern Management**
+  194:    - Keep patterns updated
+> 195:    - Add organization-specific patterns
+  196:    - Review and update regularly
+  197: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 195
+  Match: patterns
+  Context:
+  193: 2. **Pattern Management**
+  194:    - Keep patterns updated
+> 195:    - Add organization-specific patterns
+  196:    - Review and update regularly
+  197: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 196
+  Match: regularl
+  Context:
+  194:    - Keep patterns updated
+  195:    - Add organization-specific patterns
+> 196:    - Review and update regularly
+  197: 
+  198: 3. **Security**
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 198
+  Match: Security
+  Context:
+  196:    - Review and update regularly
+  197: 
+> 198: 3. **Security**
+  199:    - Don't commit real secrets
+  200:    - Use environment variables
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 200
+  Match: environm
+  Context:
+  198: 3. **Security**
+  199:    - Don't commit real secrets
+> 200:    - Use environment variables
+  201:    - Rotate secrets regularly
+  202: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 200
+  Match: variable
+  Context:
+  198: 3. **Security**
+  199:    - Don't commit real secrets
+> 200:    - Use environment variables
+  201:    - Rotate secrets regularly
+  202: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 201
+  Match: regularl
+  Context:
+  199:    - Don't commit real secrets
+  200:    - Use environment variables
+> 201:    - Rotate secrets regularly
+  202: 
+  203: 4. **Performance**
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 203
+  Match: Performa
+  Context:
+  201:    - Rotate secrets regularly
+  202: 
+> 203: 4. **Performance**
+  204:    - Exclude unnecessary directories
+  205:    - Use specific file patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 204
+  Match: unnecess
+  Context:
+  202: 
+  203: 4. **Performance**
+> 204:    - Exclude unnecessary directories
+  205:    - Use specific file patterns
+  206:    - Regular maintenance
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 204
+  Match: director
+  Context:
+  202: 
+  203: 4. **Performance**
+> 204:    - Exclude unnecessary directories
+  205:    - Use specific file patterns
+  206:    - Regular maintenance
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 205
+  Match: specific
+  Context:
+  203: 4. **Performance**
+  204:    - Exclude unnecessary directories
+> 205:    - Use specific file patterns
+  206:    - Regular maintenance
+  207: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 205
+  Match: patterns
+  Context:
+  203: 4. **Performance**
+  204:    - Exclude unnecessary directories
+> 205:    - Use specific file patterns
+  206:    - Regular maintenance
+  207: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 206
+  Match: maintena
+  Context:
+  204:    - Exclude unnecessary directories
+  205:    - Use specific file patterns
+> 206:    - Regular maintenance
+  207: 
+  208: ## Support
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 210
+  Match: requests
+  Context:
+  208: ## Support
+  209: 
+> 210: For issues and feature requests:
+  211: 1. Check the documentation
+  212: 2. Review common issues
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 211
+  Match: document
+  Context:
+  209: 
+  210: For issues and feature requests:
+> 211: 1. Check the documentation
+  212: 2. Review common issues
+  213: 3. Submit a GitHub issue
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 214
+  Match: maintain
+  Context:
+  212: 2. Review common issues
+  213: 3. Submit a GitHub issue
+> 214: 4. Contact the maintainers 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 152
+  Match: ------------------------
+  Context:
+  150: > 42: secret = "found_secret"
+  151:    44: more code
+> 152: --------------------------------------------------
+  153: ```
+  154: 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 152
+  Match: ------------------------
+  Context:
+  150: > 42: secret = "found_secret"
+  151:    44: more code
+> 152: --------------------------------------------------
+  153: ```
+  154: 
+--------------------------------------------------
+
+File: ./README.md
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: Detector
+  Context:
+> 1: # GitHub Secrets Detector
+  2: 
+  3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: powerful
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: reposito
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: patterns
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: maintain
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: practice
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: identify
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: potentia
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: security
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: vulnerab
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 3
+  Match: producti
+  Context:
+  1: # GitHub Secrets Detector
+  2: 
+> 3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+  5: ## Features
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 5
+  Match: Features
+  Context:
+  3: A powerful tool to detect exposed API keys and secrets in GitHub repositories using regex patterns. This tool helps maintain secure coding practices by identifying potential security vulnerabilities before they reach production.
+  4: 
+> 5: ## Features
+  6: 
+  7: - Scans repositories for common API keys and secrets using regex patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: reposito
+  Context:
+  5: ## Features
+  6: 
+> 7: - Scans repositories for common API keys and secrets using regex patterns
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: patterns
+  Context:
+  5: ## Features
+  6: 
+> 7: - Scans repositories for common API keys and secrets using regex patterns
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: Supports
+  Context:
+  6: 
+  7: - Scans repositories for common API keys and secrets using regex patterns
+> 8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: multiple
+  Context:
+  6: 
+  7: - Scans repositories for common API keys and secrets using regex patterns
+> 8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: Provides
+  Context:
+  7: - Scans repositories for common API keys and secrets using regex patterns
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+> 9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: detailed
+  Context:
+  7: - Scans repositories for common API keys and secrets using regex patterns
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+> 9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 10
+  Match: Integrat
+  Context:
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+> 10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 10
+  Match: automate
+  Context:
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+> 10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 10
+  Match: scanning
+  Context:
+  8: - Supports multiple secret types (AWS, GitHub, Google, Stripe, etc.)
+  9: - Provides detailed context for each found secret
+> 10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: Customiz
+  Context:
+  9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+> 11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+  13: - Generates detailed reports
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: matching
+  Context:
+  9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+> 11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+  13: - Generates detailed reports
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: configur
+  Context:
+  9: - Provides detailed context for each found secret
+  10: - Integrates with GitHub Actions for automated scanning
+> 11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+  13: - Generates detailed reports
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: Excludes
+  Context:
+  10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+> 12: - Excludes common directories (.git, node_modules, etc.)
+  13: - Generates detailed reports
+  14: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: director
+  Context:
+  10: - Integrates with GitHub Actions for automated scanning
+  11: - Customizable pattern matching through JSON configuration
+> 12: - Excludes common directories (.git, node_modules, etc.)
+  13: - Generates detailed reports
+  14: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: Generate
+  Context:
+  11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+> 13: - Generates detailed reports
+  14: 
+  15: ## Installation
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: detailed
+  Context:
+  11: - Customizable pattern matching through JSON configuration
+  12: - Excludes common directories (.git, node_modules, etc.)
+> 13: - Generates detailed reports
+  14: 
+  15: ## Installation
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: Installa
+  Context:
+  13: - Generates detailed reports
+  14: 
+> 15: ## Installation
+  16: 
+  17: 1. Clone the repository:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 17
+  Match: reposito
+  Context:
+  15: ## Installation
+  16: 
+> 17: 1. Clone the repository:
+  18: ```bash
+  19: git clone https://github.com/yourusername/github-secrets-detector.git
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: //github
+  Context:
+  17: 1. Clone the repository:
+  18: ```bash
+> 19: git clone https://github.com/yourusername/github-secrets-detector.git
+  20: cd github-secrets-detector
+  21: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: com/your
+  Context:
+  17: 1. Clone the repository:
+  18: ```bash
+> 19: git clone https://github.com/yourusername/github-secrets-detector.git
+  20: cd github-secrets-detector
+  21: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: username
+  Context:
+  17: 1. Clone the repository:
+  18: ```bash
+> 19: git clone https://github.com/yourusername/github-secrets-detector.git
+  20: cd github-secrets-detector
+  21: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: detector
+  Context:
+  17: 1. Clone the repository:
+  18: ```bash
+> 19: git clone https://github.com/yourusername/github-secrets-detector.git
+  20: cd github-secrets-detector
+  21: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 20
+  Match: detector
+  Context:
+  18: ```bash
+  19: git clone https://github.com/yourusername/github-secrets-detector.git
+> 20: cd github-secrets-detector
+  21: ```
+  22: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 23
+  Match: dependen
+  Context:
+  21: ```
+  22: 
+> 23: 2. Install dependencies:
+  24: ```bash
+  25: pip install -r requirements.txt
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: requirem
+  Context:
+  23: 2. Install dependencies:
+  24: ```bash
+> 25: pip install -r requirements.txt
+  26: ```
+  27: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 34
+  Match: detector
+  Context:
+  32: Basic usage:
+  33: ```bash
+> 34: python secret_detector.py /path/to/repository
+  35: ```
+  36: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 34
+  Match: /path/to
+  Context:
+  32: Basic usage:
+  33: ```bash
+> 34: python secret_detector.py /path/to/repository
+  35: ```
+  36: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 34
+  Match: /reposit
+  Context:
+  32: Basic usage:
+  33: ```bash
+> 34: python secret_detector.py /path/to/repository
+  35: ```
+  36: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 37
+  Match: configur
+  Context:
+  35: ```
+  36: 
+> 37: With custom configuration:
+  38: ```bash
+  39: python secret_detector.py /path/to/repository --config custom_patterns.json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 39
+  Match: detector
+  Context:
+  37: With custom configuration:
+  38: ```bash
+> 39: python secret_detector.py /path/to/repository --config custom_patterns.json
+  40: ```
+  41: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 39
+  Match: /path/to
+  Context:
+  37: With custom configuration:
+  38: ```bash
+> 39: python secret_detector.py /path/to/repository --config custom_patterns.json
+  40: ```
+  41: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 39
+  Match: /reposit
+  Context:
+  37: With custom configuration:
+  38: ```bash
+> 39: python secret_detector.py /path/to/repository --config custom_patterns.json
+  40: ```
+  41: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 39
+  Match: patterns
+  Context:
+  37: With custom configuration:
+  38: ```bash
+> 39: python secret_detector.py /path/to/repository --config custom_patterns.json
+  40: ```
+  41: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 42
+  Match: Generate
+  Context:
+  40: ```
+  41: 
+> 42: Generate a report file:
+  43: ```bash
+  44: python secret_detector.py /path/to/repository --output report.txt
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 44
+  Match: detector
+  Context:
+  42: Generate a report file:
+  43: ```bash
+> 44: python secret_detector.py /path/to/repository --output report.txt
+  45: ```
+  46: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 44
+  Match: /path/to
+  Context:
+  42: Generate a report file:
+  43: ```bash
+> 44: python secret_detector.py /path/to/repository --output report.txt
+  45: ```
+  46: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 44
+  Match: /reposit
+  Context:
+  42: Generate a report file:
+  43: ```bash
+> 44: python secret_detector.py /path/to/repository --output report.txt
+  45: ```
+  46: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 47
+  Match: addition
+  Context:
+  45: ```
+  46: 
+> 47: Exclude additional directories:
+  48: ```bash
+  49: python secret_detector.py /path/to/repository --exclude dist build
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 47
+  Match: director
+  Context:
+  45: ```
+  46: 
+> 47: Exclude additional directories:
+  48: ```bash
+  49: python secret_detector.py /path/to/repository --exclude dist build
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 49
+  Match: detector
+  Context:
+  47: Exclude additional directories:
+  48: ```bash
+> 49: python secret_detector.py /path/to/repository --exclude dist build
+  50: ```
+  51: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 49
+  Match: /path/to
+  Context:
+  47: Exclude additional directories:
+  48: ```bash
+> 49: python secret_detector.py /path/to/repository --exclude dist build
+  50: ```
+  51: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 49
+  Match: /reposit
+  Context:
+  47: Exclude additional directories:
+  48: ```bash
+> 49: python secret_detector.py /path/to/repository --exclude dist build
+  50: ```
+  51: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 52
+  Match: Integrat
+  Context:
+  50: ```
+  51: 
+> 52: ### GitHub Actions Integration
+  53: 
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 54
+  Match: includes
+  Context:
+  52: ### GitHub Actions Integration
+  53: 
+> 54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 54
+  Match: workflow
+  Context:
+  52: ### GitHub Actions Integration
+  53: 
+> 54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 54
+  Match: automati
+  Context:
+  52: ### GitHub Actions Integration
+  53: 
+> 54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 54
+  Match: reposito
+  Context:
+  52: ### GitHub Actions Integration
+  53: 
+> 54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 54
+  Match: workflow
+  Context:
+  52: ### GitHub Actions Integration
+  53: 
+> 54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 55
+  Match: main/mas
+  Context:
+  53: 
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+> 55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+  57: - Daily at midnight (configurable)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 55
+  Match: branches
+  Context:
+  53: 
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+> 55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+  57: - Daily at midnight (configurable)
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 56
+  Match: requests
+  Context:
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+> 56: - On pull requests to main/master branches
+  57: - Daily at midnight (configurable)
+  58: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 56
+  Match: main/mas
+  Context:
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+> 56: - On pull requests to main/master branches
+  57: - Daily at midnight (configurable)
+  58: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 56
+  Match: branches
+  Context:
+  54: The tool includes a GitHub Actions workflow that automatically scans your repository for secrets. The workflow runs:
+  55: - On every push to main/master branches
+> 56: - On pull requests to main/master branches
+  57: - Daily at midnight (configurable)
+  58: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 57
+  Match: midnight
+  Context:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+> 57: - Daily at midnight (configurable)
+  58: 
+  59: To use the GitHub Actions integration:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 57
+  Match: configur
+  Context:
+  55: - On every push to main/master branches
+  56: - On pull requests to main/master branches
+> 57: - Daily at midnight (configurable)
+  58: 
+  59: To use the GitHub Actions integration:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 59
+  Match: integrat
+  Context:
+  57: - Daily at midnight (configurable)
+  58: 
+> 59: To use the GitHub Actions integration:
+  60: 
+  61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 61
+  Match: github/w
+  Context:
+  59: To use the GitHub Actions integration:
+  60: 
+> 61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+  63: 3. The workflow will automatically run on the specified triggers
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 61
+  Match: orkflows
+  Context:
+  59: To use the GitHub Actions integration:
+  60: 
+> 61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+  63: 3. The workflow will automatically run on the specified triggers
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 61
+  Match: reposito
+  Context:
+  59: To use the GitHub Actions integration:
+  60: 
+> 61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+  63: 3. The workflow will automatically run on the specified triggers
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: workflow
+  Context:
+  61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+> 63: 3. The workflow will automatically run on the specified triggers
+  64: 
+  65: ## Customizing Patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: automati
+  Context:
+  61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+> 63: 3. The workflow will automatically run on the specified triggers
+  64: 
+  65: ## Customizing Patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: specifie
+  Context:
+  61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+> 63: 3. The workflow will automatically run on the specified triggers
+  64: 
+  65: ## Customizing Patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 63
+  Match: triggers
+  Context:
+  61: 1. Copy the `.github/workflows/secret-scan.yml` file to your repository
+  62: 2. Commit and push the changes
+> 63: 3. The workflow will automatically run on the specified triggers
+  64: 
+  65: ## Customizing Patterns
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 65
+  Match: Customiz
+  Context:
+  63: 3. The workflow will automatically run on the specified triggers
+  64: 
+> 65: ## Customizing Patterns
+  66: 
+  67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 65
+  Match: Patterns
+  Context:
+  63: 3. The workflow will automatically run on the specified triggers
+  64: 
+> 65: ## Customizing Patterns
+  66: 
+  67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 67
+  Match: patterns
+  Context:
+  65: ## Customizing Patterns
+  66: 
+> 67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+  68: 
+  69: ```json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 67
+  Match: patterns
+  Context:
+  65: ## Customizing Patterns
+  66: 
+> 67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+  68: 
+  69: ```json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 67
+  Match: detectio
+  Context:
+  65: ## Customizing Patterns
+  66: 
+> 67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+  68: 
+  69: ```json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 67
+  Match: customiz
+  Context:
+  65: ## Customizing Patterns
+  66: 
+> 67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+  68: 
+  69: ```json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 67
+  Match: patterns
+  Context:
+  65: ## Customizing Patterns
+  66: 
+> 67: The tool uses `patterns.json` to define regex patterns for secret detection. You can customize this file to add or modify patterns:
+  68: 
+  69: ```json
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 78
+  Match: generate
+  Context:
+  76: ## Output Format
+  77: 
+> 78: The tool generates reports in the following format:
+  79: 
+  80: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 78
+  Match: followin
+  Context:
+  76: ## Output Format
+  77: 
+> 78: The tool generates reports in the following format:
+  79: 
+  80: ```
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 81
+  Match: Detectio
+  Context:
+  79: 
+  80: ```
+> 81: === GitHub Secrets Detection Report ===
+  82: 
+  83: File: /path/to/file
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 83
+  Match: /path/to
+  Context:
+  81: === GitHub Secrets Detection Report ===
+  82: 
+> 83: File: /path/to/file
+  84:   Pattern: PATTERN_NAME
+  85:   Line: 42
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 94
+  Match: Contribu
+  Context:
+  92: ```
+  93: 
+> 94: ## Contributing
+  95: 
+  96: Contributions are welcome! Please feel free to submit a Pull Request.
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 96
+  Match: Contribu
+  Context:
+  94: ## Contributing
+  95: 
+> 96: Contributions are welcome! Please feel free to submit a Pull Request.
+  97: 
+  98: ## License
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 100
+  Match: licensed
+  Context:
+  98: ## License
+  99: 
+> 100: This project is licensed under the MIT License - see the LICENSE file for details.
+  101: 
+  102: ## Security
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 102
+  Match: Security
+  Context:
+  100: This project is licensed under the MIT License - see the LICENSE file for details.
+  101: 
+> 102: ## Security
+  103: 
+  104: If you discover any security-related issues, please email security@yourdomain.com instead of using the issue tracker. 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 104
+  Match: discover
+  Context:
+  102: ## Security
+  103: 
+> 104: If you discover any security-related issues, please email security@yourdomain.com instead of using the issue tracker. 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 104
+  Match: security
+  Context:
+  102: ## Security
+  103: 
+> 104: If you discover any security-related issues, please email security@yourdomain.com instead of using the issue tracker. 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 104
+  Match: security
+  Context:
+  102: ## Security
+  103: 
+> 104: If you discover any security-related issues, please email security@yourdomain.com instead of using the issue tracker. 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 104
+  Match: yourdoma
+  Context:
+  102: ## Security
+  103: 
+> 104: If you discover any security-related issues, please email security@yourdomain.com instead of using the issue tracker. 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 91
+  Match: ------------------------
+  Context:
+  89: > 42: secret = "found_secret"
+  90:    44: more code
+> 91: --------------------------------------------------
+  92: ```
+  93: 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 91
+  Match: ------------------------
+  Context:
+  89: > 42: secret = "found_secret"
+  90:    44: more code
+> 91: --------------------------------------------------
+  92: ```
+  93: 
+--------------------------------------------------
+
+File: ./scan_report.txt
+
+  Pattern: AWS_ACCESS_KEY
+  Line: 8
+  Match: AKIA1234567890ABCDEF
+  Context:
+  6:   Pattern: AWS_ACCESS_KEY
+  7:   Line: 5
+> 8:   Match: AKIA1234567890ABCDEF
+  9:   Context:
+  10:   3: 
+--------------------------------------------------
+
+  Pattern: AWS_ACCESS_KEY
+  Line: 12
+  Match: AKIA1234567890ABCDEF
+  Context:
+  10:   3: 
+  11:   4: # AWS Credentials
+> 12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 1
+  Match: Detectio
+  Context:
+> 1: === GitHub Secrets Detection Report ===
+  2: 
+  3: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: AKIA1234
+  Context:
+  6:   Pattern: AWS_ACCESS_KEY
+  7:   Line: 5
+> 8:   Match: AKIA1234567890ABCDEF
+  9:   Context:
+  10:   3: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: 567890AB
+  Context:
+  6:   Pattern: AWS_ACCESS_KEY
+  7:   Line: 5
+> 8:   Match: AKIA1234567890ABCDEF
+  9:   Context:
+  10:   3: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: Credenti
+  Context:
+  9:   Context:
+  10:   3: 
+> 11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: AKIA1234
+  Context:
+  10:   3: 
+  11:   4: # AWS Credentials
+> 12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: 567890AB
+  Context:
+  10:   3: 
+  11:   4: # AWS Credentials
+> 12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: abcdefgh
+  Context:
+  11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+> 13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+  15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: ijklmnop
+  Context:
+  11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+> 13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+  15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: qrstuvwx
+  Context:
+  11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+> 13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+  15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 13
+  Match: yz123456
+  Context:
+  11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+> 13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+  15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 13
+  Match: abcdefghijklmnopqrstuvwx
+  Context:
+  11:   4: # AWS Credentials
+  12: > 5: aws_access_key = "AKIA1234567890ABCDEF"
+> 13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+  15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 15
+  Match: ------------------------
+  Context:
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+> 15: --------------------------------------------------
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 15
+  Match: ------------------------
+  Context:
+  13:   6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  14:   7: 
+> 15: --------------------------------------------------
+--------------------------------------------------
+
+File: ./test_secrets.py
+
+  Pattern: AWS_ACCESS_KEY
+  Line: 5
+  Match: AKIA1234567890ABCDEF
+  Context:
+  3: 
+  4: # AWS Credentials
+> 5: aws_access_key = "AKIA1234567890ABCDEF"
+  6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 2
+  Match: PRODUCTI
+  Context:
+  1: # This is a test file with some example secrets
+> 2: # DO NOT USE THESE IN PRODUCTION!
+  3: 
+  4: # AWS Credentials
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 4
+  Match: Credenti
+  Context:
+  2: # DO NOT USE THESE IN PRODUCTION!
+  3: 
+> 4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+  6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 5
+  Match: AKIA1234
+  Context:
+  3: 
+  4: # AWS Credentials
+> 5: aws_access_key = "AKIA1234567890ABCDEF"
+  6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 5
+  Match: 567890AB
+  Context:
+  3: 
+  4: # AWS Credentials
+> 5: aws_access_key = "AKIA1234567890ABCDEF"
+  6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: abcdefgh
+  Context:
+  4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+> 6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+  8: # GitHub Token
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: ijklmnop
+  Context:
+  4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+> 6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+  8: # GitHub Token
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: qrstuvwx
+  Context:
+  4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+> 6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+  8: # GitHub Token
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 6
+  Match: yz123456
+  Context:
+  4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+> 6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+  8: # GitHub Token
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: 12345678
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: 90abcdef
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: ghijklmn
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: opqrstuv
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 11
+  Match: Database
+  Context:
+  9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+> 11: # Database URL
+  12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: database
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: postgres
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: password
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: localhos
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: 5432/myd
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: 12345678
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: 90abcdef
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: ghijklmn
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: opqrstuv
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 16
+  Match: 12345678
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 16
+  Match: 90abcdef
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 16
+  Match: ghijklmn
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 16
+  Match: opqrstuv
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: eyJhbGci
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: OiJIUzI1
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: NiIsInR5
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: cCI6IkpX
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: eyJzdWIi
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: OiIxMjM0
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: NTY3ODkw
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: IiwibmFt
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: ZSI6Ikpv
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: aG4gRG9l
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: IiwiaWF0
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: IjoxNTE2
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 19
+  Match: MjM5MDIy
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 21
+  Match: password
+  Context:
+  19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+> 21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: GITHUB_TOKEN
+  Line: 9
+  Match: ghp_1234567890abcdefghijklmnopqrstuvwxyz
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 6
+  Match: abcdefghijklmnopqrstuvwx
+  Context:
+  4: # AWS Credentials
+  5: aws_access_key = "AKIA1234567890ABCDEF"
+> 6: aws_secret_key = "abcdefghijklmnopqrstuvwxyz1234567890"
+  7: 
+  8: # GitHub Token
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 9
+  Match: ghp_1234567890abcdefghij
+  Context:
+  7: 
+  8: # GitHub Token
+> 9: github_token = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"
+  10: 
+  11: # Database URL
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 15
+  Match: api_key_1234567890abcdef
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 16
+  Match: custom_api_key_123456789
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 16
+  Match: 0abcdefghijklmnopqrstuvw
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 19
+  Match: eyJhbGciOiJIUzI1NiIsInR5
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 19
+  Match: eyJzdWIiOiIxMjM0NTY3ODkw
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 19
+  Match: IiwibmFtZSI6IkpvaG4gRG9l
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 19
+  Match: IiwiaWF0IjoxNTE2MjM5MDIy
+  Context:
+  17: 
+  18: # JWT Secret
+> 19: jwt_secret = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ"
+  20: 
+  21: # This is a comment with a secret: password123 
+--------------------------------------------------
+
+  Pattern: DATABASE_URL
+  Line: 12
+  Match: postgres://user:password123@localhost:5432/mydb
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+  Pattern: API_KEY
+  Line: 15
+  Match: api_key_1234567890abcdefghijklmnopqrstuvwxyz
+  Context:
+  13: 
+  14: # API Keys
+> 15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+--------------------------------------------------
+
+  Pattern: API_KEY
+  Line: 16
+  Match: api_key_1234567890abcdefghijklmnopqrstuvwxyz
+  Context:
+  14: # API Keys
+  15: api_key = "api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+> 16: custom_api_key = "custom_api_key_1234567890abcdefghijklmnopqrstuvwxyz"
+  17: 
+  18: # JWT Secret
+--------------------------------------------------
+
+  Pattern: PASSWORD
+  Line: 12
+  Match: password123@localhost
+  Context:
+  10: 
+  11: # Database URL
+> 12: database_url = "postgres://user:password123@localhost:5432/mydb"
+  13: 
+  14: # API Keys
+--------------------------------------------------
+
+File: ./patterns.json
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: googleus
+  Context:
+  5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+> 7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: erconten
+  Context:
+  5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+> 7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: com/serv
+  Context:
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+> 9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+  11:     "STRIPE_API_KEY": "sk_live_[0-9a-zA-Z]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: PUBLISHA
+  Context:
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+  11:     "STRIPE_API_KEY": "sk_live_[0-9a-zA-Z]{24}",
+> 12:     "STRIPE_PUBLISHABLE_KEY": "pk_live_[0-9a-zA-Z]{24}",
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: DATABASE
+  Context:
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+> 15:     "DATABASE_URL": "postgres://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  16:     "MONGODB_URI": "mongodb(\\+srv)?://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  17:     "REDIS_URL": "redis://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: postgres
+  Context:
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+> 15:     "DATABASE_URL": "postgres://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  16:     "MONGODB_URI": "mongodb(\\+srv)?://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  17:     "REDIS_URL": "redis://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: PASSWORD
+  Context:
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  26: } 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: password
+  Context:
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  26: } 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: CREDENTI
+  Context:
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+> 25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  26: } 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: credenti
+  Context:
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+> 25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}"
+  26: } 
+--------------------------------------------------
+
+  Pattern: GITHUB_APP_PRIVATE_KEY
+  Line: 5
+  Match: -----BEGIN RSA PRIVATE KEY-----
+  Context:
+  3:     "AWS_SECRET_KEY": "[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{2}==|[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{3}=|[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{4}",
+  4:     "GITHUB_TOKEN": "ghp_[a-zA-Z0-9]{36}",
+> 5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 8
+  Match: GOOGLE_OAUTH_CLIENT_SECR
+  Context:
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+> 8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+--------------------------------------------------
+
+  Pattern: PRIVATE_KEY
+  Line: 5
+  Match: -----BEGIN RSA PRIVATE KEY-----
+  Context:
+  3:     "AWS_SECRET_KEY": "[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{2}==|[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{3}=|[a-zA-Z0-9+/]{4}[a-zA-Z0-9+/]{4}",
+  4:     "GITHUB_TOKEN": "ghp_[a-zA-Z0-9]{36}",
+> 5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+--------------------------------------------------
+
+  Pattern: PRIVATE_KEY
+  Line: 20
+  Match: -----BEGIN OPENSSH PRIVATE KEY-----
+  Context:
+  18:     "JWT_SECRET": "eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}",
+  19:     "PRIVATE_KEY": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+> 20:     "SSH_PRIVATE_KEY": "-----BEGIN OPENSSH PRIVATE KEY-----",
+  21:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: SSH_PRIVATE_KEY
+  Line: 20
+  Match: -----BEGIN OPENSSH PRIVATE KEY-----
+  Context:
+  18:     "JWT_SECRET": "eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}",
+  19:     "PRIVATE_KEY": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+> 20:     "SSH_PRIVATE_KEY": "-----BEGIN OPENSSH PRIVATE KEY-----",
+  21:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+File: ./custom_patterns.json
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: googleus
+  Context:
+  5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+> 7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: erconten
+  Context:
+  5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+> 7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: com/serv
+  Context:
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+  8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+> 9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+  11:     "STRIPE_API_KEY": "sk_live_[0-9a-zA-Z]{24}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 12
+  Match: PUBLISHA
+  Context:
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+  11:     "STRIPE_API_KEY": "sk_live_[0-9a-zA-Z]{24}",
+> 12:     "STRIPE_PUBLISHABLE_KEY": "pk_live_[0-9a-zA-Z]{24}",
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: DATABASE
+  Context:
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+> 15:     "DATABASE_URL": "postgres://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  16:     "MONGODB_URI": "mongodb(\\+srv)?://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  17:     "REDIS_URL": "redis://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: postgres
+  Context:
+  13:     "TWILIO_ACCOUNT_SID": "AC[a-z0-9]{32}",
+  14:     "TWILIO_AUTH_TOKEN": "[0-9a-f]{32}",
+> 15:     "DATABASE_URL": "postgres://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  16:     "MONGODB_URI": "mongodb(\\+srv)?://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+/[a-zA-Z0-9_-]+",
+  17:     "REDIS_URL": "redis://[a-zA-Z0-9_-]+:[a-zA-Z0-9_-]+@[a-zA-Z0-9.-]+:[0-9]+",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: PASSWORD
+  Context:
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: password
+  Context:
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: CREDENTI
+  Context:
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+> 25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 25
+  Match: credenti
+  Context:
+  23:     "ACCESS_TOKEN": "access[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  24:     "PASSWORD": "password[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+> 25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 27
+  Match: ENCRYPTI
+  Context:
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+> 27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 27
+  Match: encrypti
+  Context:
+  25:     "CREDENTIALS": "credentials[_-]?[a-zA-Z0-9@#$%^&*()_+]{8,}",
+  26:     "CUSTOM_API_KEY": "custom[_-]?api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+> 27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+  29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: LS0tLS1C
+  Context:
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: RUdJTiBQ
+  Context:
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: UklWQVRF
+  Context:
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 29
+  Match: IEtFWS0t
+  Context:
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 31
+  Match: REGISTRY
+  Context:
+  29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+> 31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+  32:     "KUBERNETES_SECRET": "k8s[_-]?secret[_-]?[a-zA-Z0-9]{32,}"
+  33: } 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 31
+  Match: registry
+  Context:
+  29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+> 31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+  32:     "KUBERNETES_SECRET": "k8s[_-]?secret[_-]?[a-zA-Z0-9]{32,}"
+  33: } 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 32
+  Match: KUBERNET
+  Context:
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+> 32:     "KUBERNETES_SECRET": "k8s[_-]?secret[_-]?[a-zA-Z0-9]{32,}"
+  33: } 
+--------------------------------------------------
+
+  Pattern: GITHUB_APP_PRIVATE_KEY
+  Line: 5
+  Match: -----BEGIN RSA PRIVATE KEY-----
+  Context:
+  3:     "AWS_SECRET_KEY": "[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{2}==|[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{3}=|[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{4}",
+  4:     "GITHUB_TOKEN": "ghp_[a-zA-Z0-9]{36}",
+> 5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 8
+  Match: GOOGLE_OAUTH_CLIENT_SECR
+  Context:
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+> 8:     "GOOGLE_OAUTH_CLIENT_SECRET": "[0-9A-Za-z-_]{24}",
+  9:     "SLACK_WEBHOOK": "https://hooks\\.slack\\.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}",
+  10:     "SLACK_BOT_TOKEN": "xoxb-[0-9]{12}-[0-9]{12}-[a-zA-Z0-9]{24}",
+--------------------------------------------------
+
+  Pattern: GOOGLE_OAUTH_CLIENT_SECRET
+  Line: 29
+  Match: LS0tLS1CRUdJTiBQUklWQVRF
+  Context:
+  27:     "ENCRYPTION_KEY": "encryption[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  28:     "AUTH_TOKEN": "auth[_-]?token[_-]?[a-zA-Z0-9]{32,}",
+> 29:     "PRIVATE_KEY_BASE64": "LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0t",
+  30:     "SSH_KEY": "ssh-rsa [A-Za-z0-9+/]{100,}",
+  31:     "DOCKER_REGISTRY": "docker[_-]?registry[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: PRIVATE_KEY
+  Line: 5
+  Match: -----BEGIN RSA PRIVATE KEY-----
+  Context:
+  3:     "AWS_SECRET_KEY": "[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{2}==|[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{3}=|[a-zA-Z0-9+/]{4}*[a-zA-Z0-9+/]{4}",
+  4:     "GITHUB_TOKEN": "ghp_[a-zA-Z0-9]{36}",
+> 5:     "GITHUB_APP_PRIVATE_KEY": "-----BEGIN RSA PRIVATE KEY-----",
+  6:     "GOOGLE_API_KEY": "AIza[0-9A-Za-z-_]{35}",
+  7:     "GOOGLE_OAUTH_CLIENT_ID": "[0-9]+-[0-9A-Za-z_]{32}\\.apps\\.googleusercontent\\.com",
+--------------------------------------------------
+
+  Pattern: PRIVATE_KEY
+  Line: 20
+  Match: -----BEGIN OPENSSH PRIVATE KEY-----
+  Context:
+  18:     "JWT_SECRET": "eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}",
+  19:     "PRIVATE_KEY": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+> 20:     "SSH_PRIVATE_KEY": "-----BEGIN OPENSSH PRIVATE KEY-----",
+  21:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+  Pattern: SSH_PRIVATE_KEY
+  Line: 20
+  Match: -----BEGIN OPENSSH PRIVATE KEY-----
+  Context:
+  18:     "JWT_SECRET": "eyJ[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}\\.[a-zA-Z0-9_-]{10,}",
+  19:     "PRIVATE_KEY": "-----BEGIN (RSA|DSA|EC|OPENSSH) PRIVATE KEY-----",
+> 20:     "SSH_PRIVATE_KEY": "-----BEGIN OPENSSH PRIVATE KEY-----",
+  21:     "API_KEY": "api[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+  22:     "SECRET_KEY": "secret[_-]?key[_-]?[a-zA-Z0-9]{32,}",
+--------------------------------------------------
+
+File: ./.github/workflows/secret-scan.yml
+
+  Pattern: AWS_SECRET_KEY
+  Line: 5
+  Match: branches
+  Context:
+  3: on:
+  4:   push:
+> 5:     branches: [ main, master ]
+  6:   pull_request:
+  7:     branches: [ main, master ]
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 7
+  Match: branches
+  Context:
+  5:     branches: [ main, master ]
+  6:   pull_request:
+> 7:     branches: [ main, master ]
+  8:   schedule:
+  9:     - cron: '0 0 * * *'  # Run daily at midnight
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 8
+  Match: schedule
+  Context:
+  6:   pull_request:
+  7:     branches: [ main, master ]
+> 8:   schedule:
+  9:     - cron: '0 0 * * *'  # Run daily at midnight
+  10: 
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 9
+  Match: midnight
+  Context:
+  7:     branches: [ main, master ]
+  8:   schedule:
+> 9:     - cron: '0 0 * * *'  # Run daily at midnight
+  10: 
+  11: jobs:
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: actions/
+  Context:
+  13:     runs-on: ubuntu-latest
+  14:     steps:
+> 15:     - uses: actions/checkout@v3
+  16:       with:
+  17:         fetch-depth: 0  # Fetch all history for scanning
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 15
+  Match: checkout
+  Context:
+  13:     runs-on: ubuntu-latest
+  14:     steps:
+> 15:     - uses: actions/checkout@v3
+  16:       with:
+  17:         fetch-depth: 0  # Fetch all history for scanning
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 17
+  Match: scanning
+  Context:
+  15:     - uses: actions/checkout@v3
+  16:       with:
+> 17:         fetch-depth: 0  # Fetch all history for scanning
+  18: 
+  19:     - name: Set up Python
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 20
+  Match: actions/
+  Context:
+  18: 
+  19:     - name: Set up Python
+> 20:       uses: actions/setup-python@v4
+  21:       with:
+  22:         python-version: '3.9'
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 24
+  Match: dependen
+  Context:
+  22:         python-version: '3.9'
+  23: 
+> 24:     - name: Install dependencies
+  25:       run: |
+  26:         python -m pip install --upgrade pip
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 27
+  Match: requirem
+  Context:
+  25:       run: |
+  26:         python -m pip install --upgrade pip
+> 27:         pip install -r requirements.txt
+  28: 
+  29:     - name: Run secret scanner
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 31
+  Match: detector
+  Context:
+  29:     - name: Run secret scanner
+  30:       run: |
+> 31:         python secret_detector.py . --output scan_report.txt
+  32: 
+  33:     - name: Check for secrets
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 36
+  Match: Potentia
+  Context:
+  34:       run: |
+  35:         if [ -s scan_report.txt ] && [ "$(cat scan_report.txt)" != "No secrets found." ]; then
+> 36:           echo "::error::Potential secrets found in the repository. Please check scan_report.txt for details."
+  37:           exit 1
+  38:         fi
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 36
+  Match: reposito
+  Context:
+  34:       run: |
+  35:         if [ -s scan_report.txt ] && [ "$(cat scan_report.txt)" != "No secrets found." ]; then
+> 36:           echo "::error::Potential secrets found in the repository. Please check scan_report.txt for details."
+  37:           exit 1
+  38:         fi
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 42
+  Match: actions/
+  Context:
+  40:     - name: Upload scan report
+  41:       if: always()
+> 42:       uses: actions/upload-artifact@v3
+  43:       with:
+  44:         name: secret-scan-report
+--------------------------------------------------
+
+  Pattern: AWS_SECRET_KEY
+  Line: 42
+  Match: artifact
+  Context:
+  40:     - name: Upload scan report
+  41:       if: always()
+> 42:       uses: actions/upload-artifact@v3
+  43:       with:
+  44:         name: secret-scan-report
+--------------------------------------------------
